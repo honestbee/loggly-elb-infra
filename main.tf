@@ -2,7 +2,6 @@ provider "aws" {
   region = "${var.aws_region}"
 }
 
-# terraform import aws_s3_bucket.elb_logs honestbee-elb-logs
 resource "aws_s3_bucket" "elb_logs" {
     bucket = "${var.bucket_name}"
     acl = "private"
@@ -55,11 +54,6 @@ data "aws_iam_policy_document" "s3_queue" {
     resources = [
       "${aws_sqs_queue.s3_queue.arn}"
     ]
-    # condition = {
-    #   test = "ArnLike"
-    #   variable = "aws:SourceArn"
-    #   values = ["arn:aws:s3:*:*:${aws_s3_bucket.elb_logs.id}"]
-    # }
     condition = {
       test = "ArnEquals"
       variable = "aws:SourceArn"
