@@ -44,7 +44,7 @@ terraform init github.com/honestbee/loggly-elb-infra
 
 ### Planning changes
 
-Use `terraform plan` to preview changes this configuration will to your AWS account:
+Use `terraform plan` to preview changes this configuration will apply to your AWS account:
 
 ```bash
 terraform plan
@@ -64,19 +64,19 @@ If you have an existing bucket, use `terraform import aws_s3_bucket.elb_logs <na
 
 ```bash
 terraform import aws_s3_bucket.elb_logs my-bucket
->aws_s3_bucket.elb_logs: Importing from ID "my-bucket"...
->aws_s3_bucket.elb_logs: Import complete!
->  Imported aws_s3_bucket (ID: my-bucket)
->  Imported aws_s3_bucket_policy (ID: my-bucket)
->aws_s3_bucket.elb_logs: Refreshing state... (ID: my-bucket)
->aws_s3_bucket_policy.elb_logs: Refreshing state... (ID: my-bucket)
+> aws_s3_bucket.elb_logs: Importing from ID "my-bucket"...
+> aws_s3_bucket.elb_logs: Import complete!
+>   Imported aws_s3_bucket (ID: my-bucket)
+>   Imported aws_s3_bucket_policy (ID: my-bucket)
+> aws_s3_bucket.elb_logs: Refreshing state... (ID: my-bucket)
+> aws_s3_bucket_policy.elb_logs: Refreshing state... (ID: my-bucket)
 >
->Import success! The resources imported are shown above. These are
->now in your Terraform state. ...
->...
+> Import success! The resources imported are shown above. These are
+> now in your Terraform state. ...
+> ...
 ```
 
-Note: Pay close attention to the Terraform plan to ensure no unintended changes are applied to your existing bucket or bucket_policy.
+**Note**: Pay close attention to the Terraform plan to ensure no unintended changes are applied to your existing `bucket` or `bucket_policy`.
 
 ### Applying changes
 
@@ -109,5 +109,10 @@ loggly_s3_bucket_prefix = ...
 loggly_sqs_queue_name = ...
 ```
 
-All values required for Loggly are available as outputs of the configuration.
+All values required for Loggly configuration are available as outputs of the configuration.
 
+To print this information again:
+
+```
+terraform output
+```
