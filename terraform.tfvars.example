@@ -1,0 +1,5 @@
+aws_region         = "ap-southeast-1"
+user_name          = "loggly-s3-user"
+queue_name         = "loggly-s3-queue"
+bucket_name        = "my-app"
+bucket_prefix      = "elb-logs"

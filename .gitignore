@@ -1,0 +1,5 @@
+# Terraform files #
+terraform.tfstate*
+terraform.tfplan
+terraform.tfvars
+.keypair
