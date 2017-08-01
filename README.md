@@ -60,7 +60,7 @@ Resources created and managed by this configuration:
 
 By default the terraform plan will try to create a new s3 bucket.
 
-If you have an existing bucket, use `terraform import aws_s3_bucket.elb_logs <name of bucket>`.
+If you have an existing bucket / queue, use `terraform import aws_s3_bucket.elb_logs <name of bucket>` / `terraform import aws_sqs_queue.s3_queue https://sqs.ap-southeast-1.amazonaws.com/.../<name of queue>`.
 
 ```bash
 terraform import aws_s3_bucket.elb_logs my-bucket
@@ -74,6 +74,9 @@ terraform import aws_s3_bucket.elb_logs my-bucket
 > Import success! The resources imported are shown above. These are
 > now in your Terraform state. ...
 > ...
+terraform import aws_sqs_queue.s3_queue https://sqs.ap-southeast-1.amazonaws.com/.../loggly-s3-queue
+> ...
+
 ```
 
 **Note**: Pay close attention to the Terraform plan to ensure no unintended changes are applied to your existing `bucket` or `bucket_policy`.
