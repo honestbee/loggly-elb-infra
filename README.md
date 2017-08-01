@@ -118,7 +118,7 @@ loggly_sqs_queue_name = ...
 
 All values required for Loggly configuration are available as outputs of the configuration.
 
-To get just AWS Key and secret (using [jq](http://stedolan.github.io/jq]:
+To get just AWS Key and secret (using [jq](http://stedolan.github.io/jq)):
 
 ```
 terraform output -json | jq -r "[.loggly_aws_access_key_id.value,.loggly_aws_secret_access_key.value] | @tsv"
