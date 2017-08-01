@@ -56,11 +56,15 @@ Resources created and managed by this configuration:
 - S3 Bucket with ELB policy and SQS Notifictations
 - SQS Queue
 
-### Working with existing buckets
+### Working with existing AWS Resources
 
-By default the terraform plan will try to create a new s3 bucket.
+By default the terraform plan will try to create a new AWS Resources.
 
-If you have an existing bucket / queue, use `terraform import aws_s3_bucket.elb_logs <name of bucket>` / `terraform import aws_sqs_queue.s3_queue https://sqs.ap-southeast-1.amazonaws.com/.../<name of queue>`.
+If you have an existing bucket / queue, use:
+-  `terraform import aws_s3_bucket.elb_logs <name of bucket>`
+-  `terraform import aws_sqs_queue.s3_queue https://sqs.ap-southeast-1.amazonaws.com/.../<name of queue>`.
+
+For Example:
 
 ```bash
 terraform import aws_s3_bucket.elb_logs my-bucket
@@ -106,7 +110,7 @@ Outputs:
 
 aws_account_number = ...
 loggly_aws_access_key_id = ...
-loggly_aws_secret_access_key = ...
+loggly_aws_secret_access_key = <sensitive>
 loggly_s3_bucket_name = ...
 loggly_s3_bucket_prefix = ...
 loggly_sqs_queue_name = ...
@@ -114,8 +118,9 @@ loggly_sqs_queue_name = ...
 
 All values required for Loggly configuration are available as outputs of the configuration.
 
-To print this information again:
+To get just AWS Key and secret (using [jq](http://stedolan.github.io/jq]:
 
 ```
-terraform output
+terraform output -json | jq -r "[.loggly_aws_access_key_id.value,.loggly_aws_secret_access_key.value] | @tsv"
 ```
+

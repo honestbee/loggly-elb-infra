@@ -7,6 +7,7 @@ output "loggly_aws_access_key_id" {
 }
 output "loggly_aws_secret_access_key" {
     value = "${aws_iam_access_key.loggly.secret}"
+    sensitive = true
 }
 
 output "loggly_sqs_queue_name" {
