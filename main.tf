@@ -9,6 +9,19 @@ resource "aws_s3_bucket" "elb_logs" {
       Name = "ELB Logs"
       builtWith = "terraform"
     }
+    lifecycle_rule {
+      id      = "Archive"
+      enabled = true
+      prefix  = "" #whole bucket
+      # transition {
+      #   days          = 30
+      #   storage_class = "GLACIER"
+      # }
+
+      expiration {
+        days = 60
+      }
+    }
 }
 resource "aws_s3_bucket_policy" "elb_logs" {
   bucket = "${aws_s3_bucket.elb_logs.id}"
